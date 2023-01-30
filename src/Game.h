@@ -1,9 +1,8 @@
-
 #ifndef BREAKOUT_GAME_H
 #define BREAKOUT_GAME_H
 
-#include "GameState.h"
 #include "Vector2.h"
+#include "Visuals.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -16,15 +15,9 @@ class Game
   void render();
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
-
- private:
   sf::RenderWindow& window;
-  sf::Sprite ball;
-  sf::Texture ball_texture;
-  sf::Text main_menu;
-  sf::Font font;
+  Visuals makeVisual;
   GameState menu;
-
 };
 
 #endif // BREAKOUT_GAME_H

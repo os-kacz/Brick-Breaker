@@ -10,7 +10,7 @@ endif()
 
 
 find_package(SFML 2.5.1 COMPONENTS system window graphics network audio)
-set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.h src/Vector2.h src/Vector2.cpp src/GameState.h src/GameState.cpp)
+set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.h src/Vector2.h src/Vector2.cpp src/GameState.h src/GameState.cpp src/Visuals.h src/Visuals.cpp)
 add_executable(BreakoutSFML ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
