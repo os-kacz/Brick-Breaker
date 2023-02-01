@@ -13,7 +13,7 @@ Game::~Game()
 
 bool Game::init()
 {
-  makeVisual.initialise();
+  make_visual.initialise(window, menu);
 }
 
 void Game::update(float dt)
@@ -23,7 +23,7 @@ void Game::update(float dt)
 
 void Game::render()
 {
-  makeVisual.stateSwitch();
+  make_visual.switchState(window, menu);
 }
 
 void Game::keyPressed(sf::Event event)

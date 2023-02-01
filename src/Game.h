@@ -3,6 +3,7 @@
 
 #include "Vector2.h"
 #include "Visuals.h"
+#include "Levels.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -16,7 +17,7 @@ class Game
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
   sf::RenderWindow& window;
-  Visuals makeVisual;
+  Visuals make_visual;
   GameState menu;
 };
 
