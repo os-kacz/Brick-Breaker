@@ -1,28 +1,28 @@
 #include "Visuals.h"
 #include <iostream>
 
-bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
+// how to insert a proper sf::RenderWindow window in here?
+
+bool Visuals::loadTexture()
 {
   if (!font.loadFromFile("Data/Fonts/OpenSans-bold.ttf"))
   {
     std::cout << "Error loading font";
     return false;
   }
-  if (!ball_texture.loadFromFile("Data/Images/ball.png"))
-  {
-    std::cout << "Error loading ball texture";
-    return false;
-  }
-  if (!paddle_texture.loadFromFile("Data/Images/paddleBlue.png"))
-  {
-    std::cout << "Error loading paddle texture";
-    return false;
-  }
-  if (!brick_texture.loadFromFile("Data/Images/element_grey_rectangle.png"))
-  {
-    std::cout << "Error loading brick texture";
-    return false;
-  }
+  game_object.initialiseSprite(
+    ball_texture, "Data/Images/ball.png");
+  game_object.initialiseSprite(
+    paddle_texture, "Data/Images/paddleBlue.png");
+  game_object.initialiseSprite(
+    brick_texture, "Data/Images/element_grey_rectangle.png");
+
+  return true;
+}
+
+bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
+{
+  loadTexture();
 
   menu.State = menu.MAIN_MENU;
 
@@ -38,7 +38,14 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
   paddle.setTexture(paddle_texture);
   brick.setTexture(brick_texture);
 
-  level.spawn();
+  ball.setScale(0.3,0.3);
+  ball.setPosition(
+    (window.getSize().x / 2) - (ball.getGlobalBounds().width / 2),
+    window.getSize().y - (ball.getGlobalBounds().height + paddle.getGlobalBounds().height));
+
+  paddle.setPosition(
+    (window.getSize().x / 2) - (paddle.getGlobalBounds().width / 2),
+    window.getSize().y - paddle.getGlobalBounds().height);
 
   return true;
 }
@@ -54,7 +61,8 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
     }
     case (2):
     {
-      ;
+      window.draw(ball);
+      window.draw(paddle);
       break;
     }
     case (3):

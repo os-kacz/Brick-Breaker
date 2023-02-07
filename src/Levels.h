@@ -5,7 +5,6 @@
 class Levels
 {
  public:
-  void spawn();
 };
 
 #endif // BREAKOUTSFML_LEVELS_H
