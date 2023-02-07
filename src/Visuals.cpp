@@ -1,7 +1,7 @@
 #include "Visuals.h"
 #include <iostream>
 
-// how to insert a proper sf::RenderWindow window in here?
+// how to properly implement "sf::RenderWindow window" and "GameState menu" in this class?
 
 bool Visuals::loadTexture()
 {
