@@ -1,9 +1,9 @@
 #ifndef BREAKOUT_GAME_H
 #define BREAKOUT_GAME_H
 
+#include "PlayerController.h"
 #include "Vector2.h"
 #include "Visuals.h"
-#include "Levels.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -19,6 +19,7 @@ class Game
   sf::RenderWindow& window;
   Visuals make_visual;
   GameState menu;
+  PlayerController player;
 };
 
 #endif // BREAKOUT_GAME_H

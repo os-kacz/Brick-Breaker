@@ -2,12 +2,16 @@
 
 GameObject::GameObject()
 {
-  ;
+  sprite = new sf::Sprite();
 }
 
 GameObject::~GameObject()
 {
-  ;
+  if (sprite != nullptr)
+  {
+    delete sprite;
+    sprite = nullptr;
+  }
 }
 
 bool GameObject::initialiseSprite(sf::Texture& texture, std::string filename)
@@ -16,9 +20,11 @@ bool GameObject::initialiseSprite(sf::Texture& texture, std::string filename)
     std::cout << "Error loading from" << filename << std::endl;
     return false;
   }
+  sprite->setTexture(texture);
+  return true;
 }
 
-sf::Sprite& getSprite()
+sf::Sprite* GameObject::getSprite()
 {
-  // unsure how this function is intended to be defined or used
+  return sprite;
 }

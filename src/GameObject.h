@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-class GameObject // how is this class expected to be used? examples please
+class GameObject
 {
  public:
   GameObject();

@@ -32,6 +32,10 @@ void Game::keyPressed(sf::Event event)
   {
     menu.State = menu.PLAY_GAME;
   }
+  if (menu.State == menu.PLAY_GAME)
+  {
+    player.paddleMove(event);
+  }
 }
 
 void Game::keyReleased(sf::Event event)

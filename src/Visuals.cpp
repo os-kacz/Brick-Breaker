@@ -3,6 +3,16 @@
 
 // how to properly implement "sf::RenderWindow window" and "GameState menu" in this class?
 
+Visuals::Visuals()
+{
+  ;
+}
+
+Visuals::~Visuals()
+{
+  ;
+}
+
 bool Visuals::loadTexture()
 {
   if (!font.loadFromFile("Data/Fonts/OpenSans-bold.ttf"))
@@ -10,11 +20,11 @@ bool Visuals::loadTexture()
     std::cout << "Error loading font";
     return false;
   }
-  game_object.initialiseSprite(
+  ball.initialiseSprite(
     ball_texture, "Data/Images/ball.png");
-  game_object.initialiseSprite(
+  paddle.initialiseSprite(
     paddle_texture, "Data/Images/paddleBlue.png");
-  game_object.initialiseSprite(
+  brick.initialiseSprite(
     brick_texture, "Data/Images/element_grey_rectangle.png");
 
   return true;
@@ -34,18 +44,14 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (main_text.getGlobalBounds().width / 2),
     (window.getSize().y / 2) - (main_text.getGlobalBounds().height / 2));
 
-  ball.setTexture(ball_texture);
-  paddle.setTexture(paddle_texture);
-  brick.setTexture(brick_texture);
+  ball.getSprite()->setScale(0.3,0.3);
+  ball.getSprite()->setPosition(
+    (window.getSize().x / 2) - (ball.getSprite()->getGlobalBounds().width / 2),
+    window.getSize().y - (ball.getSprite()->getGlobalBounds().height + paddle.getSprite()->getGlobalBounds().height));
 
-  ball.setScale(0.3,0.3);
-  ball.setPosition(
-    (window.getSize().x / 2) - (ball.getGlobalBounds().width / 2),
-    window.getSize().y - (ball.getGlobalBounds().height + paddle.getGlobalBounds().height));
-
-  paddle.setPosition(
-    (window.getSize().x / 2) - (paddle.getGlobalBounds().width / 2),
-    window.getSize().y - paddle.getGlobalBounds().height);
+  paddle.getSprite()->setPosition(
+    (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
+    window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
   return true;
 }
@@ -61,8 +67,8 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
     }
     case (2):
     {
-      window.draw(ball);
-      window.draw(paddle);
+      window.draw(*ball.getSprite());
+      window.draw(*paddle.getSprite());
       break;
     }
     case (3):
