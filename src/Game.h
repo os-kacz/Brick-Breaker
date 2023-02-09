@@ -20,6 +20,7 @@ class Game
   Visuals make_visual;
   GameState menu;
   PlayerController player;
+  float game_object_speed;
 };
 
 #endif // BREAKOUT_GAME_H

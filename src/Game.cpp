@@ -1,9 +1,10 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game(sf::RenderWindow& game_window) : window(game_window)
+Game::Game(sf::RenderWindow& game_window) : window(game_window), player(player.paddle)
 {
   srand(time(NULL));
+  game_object_speed = 10;
 }
 
 Game::~Game()
@@ -18,7 +19,11 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-
+  if (menu.State == menu.PLAY_GAME)
+  {
+    player.paddle.getSprite()->move(
+      player.paddle_speed_multiplier * game_object_speed,0);
+  }
 }
 
 void Game::render()

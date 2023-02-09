@@ -16,7 +16,6 @@ class Visuals
   GameObject ball, paddle, brick;
   sf::Text main_text;
   sf::Font font;
-  PlayerController player;
  private:
   bool loadTexture();
 };
