@@ -13,7 +13,8 @@ class Visuals
   bool initialise(sf::RenderWindow& window, GameState& menu);
   void switchState(sf::RenderWindow& window, GameState& menu);
   sf::Texture ball_texture, paddle_texture, brick_texture;
-  GameObject ball, paddle, brick;
+  GameObject ball, paddle;
+  GameObject brick[33];
   sf::Text main_text;
   sf::Font font;
  private:

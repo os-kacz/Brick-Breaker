@@ -24,8 +24,12 @@ bool Visuals::loadTexture()
     ball_texture, "Data/Images/ball.png");
   paddle.initialiseSprite(
     paddle_texture, "Data/Images/paddleBlue.png");
-  brick.initialiseSprite(
-    brick_texture, "Data/Images/element_grey_rectangle.png");
+  for (auto & i : brick)
+  {
+    i.initialiseSprite(
+      brick_texture, "Data/Images/element_grey_rectangle.png");
+  }
+
 
   return true;
 }
@@ -53,6 +57,16 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
+  int row = 0;
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 11; j++)
+    {
+      brick[j+row].getSprite()->setPosition(((window.getSize().x / 11) * j) + 20,22 + (row*10));
+    }
+    row += 11;
+  }
+
   return true;
 }
 
@@ -69,6 +83,11 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
     {
       window.draw(*ball.getSprite());
       window.draw(*paddle.getSprite());
+      for (auto & i : brick)
+      {
+        if (i.visible)
+        window.draw(*i.getSprite());
+      }
       break;
     }
     case (3):

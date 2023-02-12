@@ -21,6 +21,7 @@ void Game::update(float dt)
   if (menu.State == menu.PLAY_GAME)
   {
     visual.paddle.getSprite()->move(player.paddle_speed,0);
+    collision.paddleWindowCheck(window, visual.paddle);
   }
 }
 

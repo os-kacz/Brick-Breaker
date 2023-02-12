@@ -4,6 +4,7 @@
 #include "PlayerController.h"
 #include "Vector2.h"
 #include "Visuals.h"
+#include "Collision.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -20,6 +21,7 @@ class Game
   Visuals visual;
   GameState menu;
   PlayerController player;
+  Collision collision;
 };
 
 #endif // BREAKOUT_GAME_H
