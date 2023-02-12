@@ -14,9 +14,12 @@ class Visuals
   void switchState(sf::RenderWindow& window, GameState& menu);
   sf::Texture ball_texture, paddle_texture, brick_texture;
   GameObject ball, paddle;
-  GameObject brick[33];
+  GameObject brick[44];
   sf::Text main_text;
   sf::Font font;
+  int column = 11;
+  int row = 4;
+  int grid_accum = 0;
  private:
   bool loadTexture();
 };

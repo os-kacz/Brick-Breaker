@@ -5,12 +5,12 @@
 
 Visuals::Visuals()
 {
-  ;
+
 }
 
 Visuals::~Visuals()
 {
-  ;
+
 }
 
 bool Visuals::loadTexture()
@@ -29,7 +29,6 @@ bool Visuals::loadTexture()
     i.initialiseSprite(
       brick_texture, "Data/Images/element_grey_rectangle.png");
   }
-
 
   return true;
 }
@@ -57,14 +56,14 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
-  int row = 0;
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < row; i++)
   {
-    for (int j = 0; j < 11; j++)
+    for (int j = 0; j < column; j++)
     {
-      brick[j+row].getSprite()->setPosition(((window.getSize().x / 11) * j) + 20,22 + (row*10));
+      brick[j+grid_accum].getSprite()->setPosition(
+        ((window.getSize().x / column) * j) + 20,22 + (i*50));
     }
-    row += 11;
+    grid_accum += column;
   }
 
   return true;
