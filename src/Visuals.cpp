@@ -44,7 +44,7 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (main_text.getGlobalBounds().width / 2),
     (window.getSize().y / 2) - (main_text.getGlobalBounds().height / 2));
 
-  ball.getSprite()->setScale(0.3,0.3);
+  ball.getSprite()->setScale(0.2,0.2);
   ball.getSprite()->setPosition(
     (window.getSize().x / 2) - (ball.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - (ball.getSprite()->getGlobalBounds().height + paddle.getSprite()->getGlobalBounds().height));

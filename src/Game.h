@@ -9,7 +9,7 @@
 class Game
 {
  public:
-  Game(sf::RenderWindow& window);
+  Game(sf::RenderWindow& game_window);
   ~Game();
   bool init();
   void update(float dt);
@@ -17,10 +17,9 @@ class Game
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
   sf::RenderWindow& window;
-  Visuals make_visual;
+  Visuals visual;
   GameState menu;
   PlayerController player;
-  float game_object_speed;
 };
 
 #endif // BREAKOUT_GAME_H

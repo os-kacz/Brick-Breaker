@@ -6,11 +6,11 @@
 class PlayerController
 {
  public:
-  PlayerController(GameObject& paddle);
+  PlayerController();
   ~PlayerController();
   void paddleMove(sf::Event& event);
-  GameObject& paddle;
-  float paddle_speed_multiplier;
+  void paddleStop(sf::Event& event);
+  float paddle_speed;
 };
 
 #endif // BREAKOUTSFML_PLAYERCONTROLLER_H
