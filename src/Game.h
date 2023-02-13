@@ -17,12 +17,12 @@ class Game
   void render();
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
+  float object_speed;
   sf::RenderWindow& window;
   Visuals visual;
   GameState menu;
   PlayerController player;
   Collision collision;
-  Vector2 ball_direction;
 };
 
 #endif // BREAKOUT_GAME_H

@@ -2,6 +2,7 @@
 #define BREAKOUTSFML_GAMEOBJECT_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Vector2.h"
 
 class GameObject
 {
@@ -11,6 +12,7 @@ class GameObject
   bool initialiseSprite(sf::Texture& texture, std::string filename);
   sf::Sprite* getSprite();
   bool visible = true;
+  Vector2 direction = Vector2(0, 0);
  private:
   sf::Sprite* sprite = nullptr;
 };

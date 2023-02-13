@@ -56,6 +56,10 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
+  ball.direction.x = -3;
+  ball.direction.y = -5;
+  ball.direction.normalise();
+
   for (int i = 0; i < row; i++)
   {
     for (int j = 0; j < column; j++)

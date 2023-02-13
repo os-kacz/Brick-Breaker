@@ -18,10 +18,15 @@ bool Game::init()
 
 void Game::update(float dt)
 {
+  object_speed = dt * 500;
   if (menu.State == menu.PLAY_GAME)
   {
-    visual.paddle.getSprite()->move(player.paddle_spd * dt,0);
+    visual.paddle.getSprite()->move(player.paddle_spd * object_speed,0);
     collision.paddleWindowCheck(window, visual.paddle);
+
+    visual.ball.getSprite()->move(
+      visual.ball.direction.x * object_speed,visual.ball.direction.y * object_speed);
+    collision.ballWindowCheck(window, visual.ball, visual.paddle);
   }
 }
 
