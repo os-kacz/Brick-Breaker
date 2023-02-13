@@ -27,6 +27,12 @@ void Game::update(float dt)
     visual.ball.getSprite()->move(
       visual.ball.direction.x * object_speed,visual.ball.direction.y * object_speed);
     collision.ballWindowCheck(window, visual.ball, visual.paddle);
+
+    for (auto & i:visual.brick)
+    {
+      collision.brickBallCheck(i, visual.ball);
+    }
+
   }
 }
 

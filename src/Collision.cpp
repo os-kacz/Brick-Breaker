@@ -1,5 +1,15 @@
 #include "Collision.h"
 
+Collision::Collision()
+{
+
+}
+
+Collision::~Collision()
+{
+
+}
+
 void Collision::paddleWindowCheck(sf::RenderWindow& window, GameObject& object)
 {
   if (object.getSprite()->getPosition().x < 0)
@@ -44,5 +54,18 @@ void Collision::ballWindowCheck(sf::RenderWindow& window, GameObject& object,
 
 void Collision::brickBallCheck(GameObject& brick, GameObject& ball)
 {
-  
+  float ball_top_left = ball.getSprite()->getPosition().x;
+  float ball_top_right = ball_top_left + ball.getSprite()->getGlobalBounds().width;
+  float ball_bot_left = ball.getSprite()->getPosition().y + ball.getSprite()->getGlobalBounds().height;
+  float ball_bot_right = ball_top_right + ball_bot_left;
+
+  float brick_top_left = brick.getSprite()->getPosition().x;
+  float brick_top_right = brick_top_left + brick.getSprite()->getGlobalBounds().width;
+  float brick_bot_left = brick.getSprite()->getPosition().y + brick.getSprite()->getGlobalBounds().height;
+  float brick_bot_right = brick_top_right + brick_bot_left;
+
+  if ()
+  {
+    brick.visible = false;
+  }
 }

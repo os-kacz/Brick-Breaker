@@ -7,6 +7,8 @@
 class Collision
 {
  public:
+  Collision();
+  ~Collision();
   void paddleWindowCheck(sf::RenderWindow& window, GameObject& object);
   void ballWindowCheck(sf::RenderWindow& window, GameObject& object,
                        GameObject& object2);
