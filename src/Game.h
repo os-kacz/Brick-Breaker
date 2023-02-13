@@ -22,6 +22,7 @@ class Game
   GameState menu;
   PlayerController player;
   Collision collision;
+  Vector2 ball_direction;
 };
 
 #endif // BREAKOUT_GAME_H
