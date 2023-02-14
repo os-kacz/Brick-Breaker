@@ -43,6 +43,8 @@ void Collision::ballWindowCheck(sf::RenderWindow& window, GameObject& object,
       > (window.getSize().y + object.getSprite()->getGlobalBounds().height))
   {
     object.direction.y *= -1;
+    object.attached = true;
+    object.lives -= 1;
     object.getSprite()->setPosition(
       (object2.getSprite()->getPosition().x) +
         (object2.getSprite()->getGlobalBounds().width/2),

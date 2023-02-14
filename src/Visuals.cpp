@@ -48,6 +48,11 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (main_text.getGlobalBounds().width / 2),
     (window.getSize().y / 2) - (main_text.getGlobalBounds().height / 2));
 
+  life_text.setString("Lives Left: "+std::to_string(ball.lives));
+  life_text.setFont(font);
+  life_text.setCharacterSize(30);
+  life_text.setFillColor(sf::Color::White);
+
   ball.getSprite()->setScale(0.2,0.2);
   ball.getSprite()->setPosition(
     (window.getSize().x / 2) - (ball.getSprite()->getGlobalBounds().width / 2),
@@ -57,6 +62,7 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
+  ball.lives = 5;
   ball.direction.x = -3;
   ball.direction.y = -5;
   ball.direction.normalise();
@@ -80,11 +86,13 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
   {
     case (1):
     {
+      main_text.setString("Press Enter to play Breakout");
       window.draw(main_text);
       break;
     }
     case (2):
     {
+      window.draw(life_text);
       window.draw(*ball.getSprite());
       window.draw(*paddle.getSprite());
       for (auto & i : brick)
@@ -96,6 +104,14 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
     }
     case (3):
     {
+      main_text.setString("You Lose! :>(");
+      window.draw(main_text);
+      break;
+    }
+    case (4):
+    {
+      main_text.setString("You Win! :>)");
+      window.draw(main_text);
       break;
     }
     default:

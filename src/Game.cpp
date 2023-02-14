@@ -13,28 +13,56 @@ Game::~Game()
 
 bool Game::init()
 {
-  visual.initialise(window, menu);
+  return visual.initialise(window, menu);
 }
 
 void Game::update(float dt)
 {
   object_speed = dt * 400;
-  if (menu.State == menu.PLAY_GAME)
+  if (visual.ball.lives < 1)
   {
-    for (auto & i:visual.brick)
+    menu.State = menu.QUIT_MENU;
+  }
+  else
+  {
+    if (menu.State == menu.PLAY_GAME)
     {
-      if (i.visible)
+      for (auto& i : visual.brick)
       {
-        collision.gameObjectCheck(visual.ball, i);
+        if (i.visible)
+        {
+          collision.gameObjectCheck(visual.ball, i);
+          if (!i.visible)
+          {
+            visual.brick_accum += 1;
+            if (visual.brick_accum == (visual.column * visual.row))
+            {
+              menu.State = menu.WIN_MENU;
+            }
+          }
+        }
       }
-    }
-    collision.ballWindowCheck(window, visual.ball, visual.paddle);
-    collision.gameObjectCheck(visual.ball, visual.paddle);
-    collision.paddleWindowCheck(window, visual.paddle);
+      collision.paddleWindowCheck(window, visual.paddle);
+      collision.gameObjectCheck(visual.ball, visual.paddle);
 
-    visual.paddle.getSprite()->move(player.paddle_spd * object_speed,0);
-    visual.ball.getSprite()->move(
-      visual.ball.direction.x * object_speed,visual.ball.direction.y * object_speed);
+      if (visual.ball.attached)
+      {
+        collision.paddleWindowCheck(window, visual.ball);
+        visual.ball.getSprite()->move(player.paddle_spd * object_speed, 0);
+      }
+      else
+      {
+        collision.ballWindowCheck(window, visual.ball, visual.paddle);
+        visual.ball.getSprite()->move(
+          visual.ball.direction.x * object_speed,
+          visual.ball.direction.y * object_speed);
+      }
+      visual.life_text.setString("Lives Left: "+std::to_string(visual.ball.lives));
+      visual.life_text.setPosition(
+        visual.paddle.getSprite()->getPosition().x,
+        visual.paddle.getSprite()->getPosition().y - (visual.paddle.getSprite()->getGlobalBounds().height + 10));
+      visual.paddle.getSprite()->move(player.paddle_spd * object_speed, 0);
+    }
   }
 }
 
@@ -60,5 +88,9 @@ void Game::keyReleased(sf::Event event)
   if (menu.State == menu.PLAY_GAME)
   {
     player.paddleStop(event);
+    if (event.key.code == sf::Keyboard::Space)
+    {
+      visual.ball.attached = false;
+    }
   }
 }

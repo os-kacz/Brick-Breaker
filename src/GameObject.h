@@ -13,6 +13,8 @@ class GameObject
   sf::Sprite* getSprite();
   bool visible = true;
   bool brick = false;
+  bool attached = true;
+  int lives;
   Vector2 direction = Vector2(0, 0);
   void getBoundingBox();
   float top_l_x;

@@ -10,6 +10,7 @@ class GameState
     MAIN_MENU = 1,
     PLAY_GAME = 2,
     QUIT_MENU = 3,
+    WIN_MENU = 4,
   } State;
 };
 

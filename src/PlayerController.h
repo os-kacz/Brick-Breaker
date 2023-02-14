@@ -11,6 +11,7 @@ class PlayerController
   void paddleMove(sf::Event& event);
   void paddleStop(sf::Event& event);
   float paddle_spd = 0;
+ private:
   float paddle_spd_multiplier = 1;
 };
 
