@@ -28,6 +28,7 @@ bool Visuals::loadTexture()
   {
     i.initialiseSprite(
       brick_texture, "Data/Images/element_grey_rectangle.png");
+    i.brick = true;
   }
 
   return true;
