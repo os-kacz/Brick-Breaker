@@ -11,10 +11,13 @@ class GameObject
   ~GameObject();
   bool initialiseSprite(sf::Texture& texture, std::string filename);
   sf::Sprite* getSprite();
+  bool getBoundingBox();
   bool visible = true;
   Vector2 direction = Vector2(0, 0);
- private:
+private:
   sf::Sprite* sprite = nullptr;
+  float bounding_box[1][1];
+
 };
 
 

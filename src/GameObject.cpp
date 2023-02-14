@@ -28,3 +28,8 @@ sf::Sprite* GameObject::getSprite()
 {
   return sprite;
 }
+
+bool GameObject::getBoundingBox()
+{
+
+}
