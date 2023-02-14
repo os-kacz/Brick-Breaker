@@ -9,10 +9,11 @@ class Collision
  public:
   Collision();
   ~Collision();
+  //void getBoundingBox(GameObject& object);
   void paddleWindowCheck(sf::RenderWindow& window, GameObject& object);
   void ballWindowCheck(sf::RenderWindow& window, GameObject& object,
                        GameObject& object2);
-  void brickBallCheck(GameObject& brick, GameObject& ball);
+  void gameObjectCheck(GameObject& affector, GameObject& affected);
 };
 
 #endif // BREAKOUTSFML_COLLISION_H

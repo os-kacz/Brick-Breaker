@@ -18,21 +18,23 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-  object_speed = dt * 500;
+  object_speed = dt * 400;
   if (menu.State == menu.PLAY_GAME)
   {
-    visual.paddle.getSprite()->move(player.paddle_spd * object_speed,0);
-    collision.paddleWindowCheck(window, visual.paddle);
-
-    visual.ball.getSprite()->move(
-      visual.ball.direction.x * object_speed,visual.ball.direction.y * object_speed);
-    collision.ballWindowCheck(window, visual.ball, visual.paddle);
-
     for (auto & i:visual.brick)
     {
-      collision.brickBallCheck(i, visual.ball);
+      if (i.visible)
+      {
+        collision.gameObjectCheck(visual.ball, i);
+      }
     }
+    collision.ballWindowCheck(window, visual.ball, visual.paddle);
+    collision.gameObjectCheck(visual.ball, visual.paddle);
+    collision.paddleWindowCheck(window, visual.paddle);
 
+    visual.paddle.getSprite()->move(player.paddle_spd * object_speed,0);
+    visual.ball.getSprite()->move(
+      visual.ball.direction.x * object_speed,visual.ball.direction.y * object_speed);
   }
 }
 

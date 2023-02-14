@@ -52,6 +52,83 @@ void Collision::ballWindowCheck(sf::RenderWindow& window, GameObject& object,
   }
 }
 
-void Collision::brickBallCheck(GameObject& brick, GameObject& ball)
+void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
 {
+  affector.getBoundingBox();
+  affected.getBoundingBox();
+  // affector bottom right intersect affected top left
+  if (affector.top_r_x > affected.top_l_x
+      && affector.top_r_x < affected.top_r_x
+      && affector.bot_l_y > affected.top_l_y
+      && affector.bot_l_y < affected.bot_l_y)
+  {
+    if (affected.brick)
+    {
+      affected.visible = false;
+    }
+    if ((affector.top_r_x - affected.top_l_x) > (affector.bot_l_y - affected.top_l_y))
+    {
+      affector.direction.y *= -1;
+    }
+    else
+    {
+      affector.direction.x *= -1;
+    }
+  }
+  // affector bottom left intersect affected top right
+  else if (affector.top_l_x > affected.top_l_x
+      && affector.top_l_x < affected.top_r_x
+      && affector.bot_l_y > affected.top_l_y
+      && affector.bot_l_y < affected.bot_l_y)
+  {
+    if (affected.brick)
+    {
+      affected.visible = false;
+    }
+    if ((affector.top_l_x - affected.top_r_x) > (affector.bot_l_y - affected.top_l_y))
+    {
+      affector.direction.y *= -1;
+    }
+    else
+    {
+      affector.direction.x *= -1;
+    }
+  }
+  // affector top right intersect affected bottom left
+  else if (affector.top_r_x > affected.top_l_x
+      && affector.top_r_x < affected.top_r_x
+      && affector.top_l_y > affected.top_l_y
+      && affector.top_l_y < affected.bot_l_y)
+  {
+    if (affected.brick)
+    {
+      affected.visible = false;
+    }
+    if ((affector.top_r_x - affected.top_l_x) > (affector.top_l_y - affected.bot_l_y))
+    {
+      affector.direction.y *= -1;
+    }
+    else
+    {
+      affector.direction.x *= -1;
+    }
+  }
+  else if (affector.top_l_x > affected.top_l_x
+      && affector.top_l_x < affected.top_r_x
+      && affector.top_l_y > affected.top_l_y
+      && affector.top_l_y < affected.bot_l_y)
+  {
+    if (affected.brick)
+    {
+      affected.visible = false;
+    }
+    if ((affector.top_r_x - affected.top_r_x) > (affector.top_l_y - affected.bot_l_y))
+    {
+      affector.direction.y *= -1;
+    }
+    else
+    {
+      affector.direction.x *= -1;
+    }
+  }
 }
