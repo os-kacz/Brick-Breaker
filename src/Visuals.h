@@ -20,10 +20,10 @@ class Visuals
   void switchState(sf::RenderWindow& window, GameState& menu);
   sf::Texture ball_texture, paddle_texture, brick_texture;
   GameObject ball, paddle;
-  static const int column = 1;
-  static const int row = 1;
+  static const int column = 15;
+  static const int row = 4;
   GameObject brick[column*row];
-  sf::Text main_text, life_text, score_text;
+  sf::Text main_text, life_text, score_text, choice_text;
   sf::Font font;
   int grid_accum = 0;
   int brick_accum = 0;

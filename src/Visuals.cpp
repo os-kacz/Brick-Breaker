@@ -53,6 +53,12 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
   life_text.setCharacterSize(30);
   life_text.setFillColor(sf::Color::White);
 
+  choice_text.setString("> Sure!\nNo, I got things to do");
+  choice_text.setFont(font);
+  choice_text.setCharacterSize(45);
+  choice_text.setFillColor(sf::Color::White);
+  choice_text.setPosition( main_text.getPosition().x,main_text.getPosition().y + main_text.getGlobalBounds().height + 20);
+
   ball.getSprite()->setScale(0.2,0.2);
   ball.getSprite()->setPosition(
     (window.getSize().x / 2) - (ball.getSprite()->getGlobalBounds().width / 2),
@@ -62,7 +68,7 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     (window.getSize().x / 2) - (paddle.getSprite()->getGlobalBounds().width / 2),
     window.getSize().y - paddle.getSprite()->getGlobalBounds().height);
 
-  ball.lives = 5;
+  ball.lives = 4;
   ball.direction.x = -3;
   ball.direction.y = -5;
   ball.direction.normalise();
@@ -104,14 +110,16 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
     }
     case (3):
     {
-      main_text.setString("You Lose! :>(");
+      main_text.setString("You lose! Play again?");
       window.draw(main_text);
+      window.draw(choice_text);
       break;
     }
     case (4):
     {
-      main_text.setString("You Win! :>)");
+      main_text.setString("You Win! Play again?");
       window.draw(main_text);
+      window.draw(choice_text);
       break;
     }
     default:
