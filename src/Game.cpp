@@ -55,8 +55,11 @@ void Game::update(float dt)
       }
     }
 
-    visual.gem[visual.gem_accum].getSprite()->move(0,200*dt);
-    collision.gameObjectCheck(visual.gem[visual.gem_accum],visual.paddle);
+    if (visual.gem[visual.gem_accum].visible)
+    {
+      visual.gem[visual.gem_accum].getSprite()->move(0,250*dt);
+      collision.gameObjectCheck(visual.gem[visual.gem_accum],visual.paddle);
+    }
 
     collision.paddleWindowCheck(window, visual.paddle);
     collision.gameObjectCheck(visual.ball, visual.paddle);
@@ -77,7 +80,7 @@ void Game::update(float dt)
       "Lives Left: " + std::to_string(visual.ball.lives));
     visual.score_text.setString("Score: " + std::to_string(collision.score));
     visual.life_text.setPosition(
-      visual.paddle.getSprite()->getPosition().x,
+      (visual.paddle.getSprite()->getPosition().x) - 25,
       visual.paddle.getSprite()->getPosition().y -
         (visual.paddle.getSprite()->getGlobalBounds().height + 10));
     visual.paddle.getSprite()->move(player.paddle_spd * object_speed, 0);
@@ -118,10 +121,20 @@ void Game::keyPressed(sf::Event event)
     }
     if (continue_selected && event.key.code == sf::Keyboard::Enter)
     {
+      visual.ball.getSprite()->setPosition(
+        visual.paddle.getSprite()->getPosition().x,
+        visual.paddle.getSprite()->getPosition().y
+          - visual.paddle.getSprite()->getGlobalBounds().height);
       visual.ball.lives = 4;
+      collision.score = 0;
       for (auto & i : visual.brick)
       {
         i.visible = true;
+      }
+      for (auto & j : visual.gem)
+      {
+        j.visible = true;
+        j.getSprite()->setPosition(500,-50);
       }
       menu.State = menu.PLAY_GAME;
     }

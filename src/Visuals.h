@@ -20,8 +20,8 @@ class Visuals
   void switchState(sf::RenderWindow& window, GameState& menu);
   sf::Texture ball_texture, paddle_texture, brick_texture, gem_texture;
   GameObject ball, paddle;
-  static const int column = 15;
-  static const int row = 4;
+  static const int column = 11;
+  static const int row = 3;
   GameObject brick[column*row];
   static const int gem_count = 3;
   GameObject gem[gem_count];

@@ -136,7 +136,7 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
     }
     if (affector.type == affector.GEM)
     {
-      score++;
+      score += 5;
     }
     if (affected.type == affected.BRICK)
     {

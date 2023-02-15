@@ -73,7 +73,7 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
   score_text.setCharacterSize(45);
   score_text.setFillColor(sf::Color::White);
   score_text.setPosition(
-              window.getSize().x / 2,
+              (window.getSize().x / 2) - 50,
               window.getSize().y / 2);
 
   ball.getSprite()->setScale(0.2,0.2);
