@@ -12,7 +12,6 @@ class GameObject
   bool initialiseSprite(sf::Texture& texture, std::string filename);
   sf::Sprite* getSprite();
   bool visible = true;
-  bool brick = false;
   bool attached = true;
   int lives;
   Vector2 direction = Vector2(0, 0);
@@ -21,6 +20,12 @@ class GameObject
   float top_r_x;
   float top_l_y;
   float bot_l_y;
+  enum
+  {
+    BRICK = 1,
+    GEM = 2,
+    PADDLE = 3,
+  } type;
 private:
   sf::Sprite* sprite = nullptr;
 

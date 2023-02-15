@@ -19,6 +19,7 @@ class Game
   void keyReleased(sf::Event event);
   float object_speed;
   bool continue_selected = true;
+  float time_passed = 5;
   sf::RenderWindow& window;
   Visuals visual;
   GameState menu;

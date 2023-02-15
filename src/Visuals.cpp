@@ -24,11 +24,18 @@ bool Visuals::loadTexture()
     ball_texture, "Data/Images/ball.png");
   paddle.initialiseSprite(
     paddle_texture, "Data/Images/paddleBlue.png");
+  paddle.type = paddle.PADDLE;
   for (auto & i : brick)
   {
     i.initialiseSprite(
       brick_texture, "Data/Images/element_grey_rectangle.png");
-    i.brick = true;
+    i.type = i.BRICK;
+  }
+  for (auto & j : gem)
+  {
+    j.initialiseSprite(
+      gem_texture, "Data/Images/element_red_diamond_glossy.png");
+    j.type = j.GEM;
   }
 
   return true;
@@ -83,6 +90,13 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
     grid_accum += column;
   }
 
+  for (int l = 0; l < gem_count; l++)
+  {
+    gem[l].getSprite()->setPosition(
+      (window.getSize().x / gem_count) * l,
+      -(gem[l].getSprite()->getGlobalBounds().height));
+  }
+
   return true;
 }
 
@@ -104,7 +118,12 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
       for (auto & i : brick)
       {
         if (i.visible)
-        window.draw(*i.getSprite());
+          window.draw(*i.getSprite());
+      }
+      for (auto & j : gem)
+      {
+        if (j.visible)
+          window.draw(*j.getSprite());
       }
       break;
     }

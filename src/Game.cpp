@@ -19,6 +19,20 @@ bool Game::init()
 void Game::update(float dt)
 {
   object_speed = dt * 400;
+  time_passed += dt;
+  std::cout << visual.gem_accum << std::endl << visual.gem[visual.gem_accum].visible << std::endl;
+  if (time_passed > 5.0)
+  {
+    visual.gem_accum++;
+    if (visual.gem_accum == 3)
+    {
+      visual.gem_accum = 0;
+    }
+    visual.gem[visual.gem_accum].visible = true;
+    visual.gem[visual.gem_accum].getSprite()->setPosition(
+      std::rand() % (window.getSize().x - 20) + 20,-20);
+    time_passed = 0;
+  }
   if (visual.ball.lives < 0)
   {
     menu.State = menu.QUIT_MENU;
@@ -40,6 +54,10 @@ void Game::update(float dt)
         }
       }
     }
+
+    visual.gem[visual.gem_accum].getSprite()->move(0,200*dt);
+    collision.gameObjectCheck(visual.gem[visual.gem_accum],visual.paddle);
+
     collision.paddleWindowCheck(window, visual.paddle);
     collision.gameObjectCheck(visual.ball, visual.paddle);
 
@@ -99,12 +117,12 @@ void Game::keyPressed(sf::Event event)
     }
     if (continue_selected && event.key.code == sf::Keyboard::Enter)
     {
-      menu.State = menu.PLAY_GAME;
       visual.ball.lives = 4;
       for (auto & i : visual.brick)
       {
         i.visible = true;
       }
+      menu.State = menu.PLAY_GAME;
     }
     else if (!continue_selected && event.key.code == sf::Keyboard::Enter)
     {

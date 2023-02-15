@@ -14,6 +14,9 @@ class Collision
   void ballWindowCheck(sf::RenderWindow& window, GameObject& object,
                        GameObject& object2);
   void gameObjectCheck(GameObject& affector, GameObject& affected);
+  int score;
+ private:
+  bool collision_detected;
 };
 
 #endif // BREAKOUTSFML_COLLISION_H

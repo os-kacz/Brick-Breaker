@@ -58,17 +58,16 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
 {
   affector.getBoundingBox();
   affected.getBoundingBox();
+  collision_detected = false;
   // affector bottom right intersect affected top left
   if (affector.top_r_x > affected.top_l_x
       && affector.top_r_x < affected.top_r_x
       && affector.bot_l_y > affected.top_l_y
       && affector.bot_l_y < affected.bot_l_y)
   {
-    if (affected.brick)
-    {
-      affected.visible = false;
-    }
-    if ((affector.top_r_x - affected.top_l_x) > (affector.bot_l_y - affected.top_l_y))
+    collision_detected = true;
+    if ((affector.top_r_x - affected.top_l_x) > (affector.bot_l_y - affected.top_l_y)
+        && affected.type != affected.GEM)
     {
       affector.direction.y *= -1;
     }
@@ -83,11 +82,9 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
       && affector.bot_l_y > affected.top_l_y
       && affector.bot_l_y < affected.bot_l_y)
   {
-    if (affected.brick)
-    {
-      affected.visible = false;
-    }
-    if ((affector.top_l_x - affected.top_r_x) > (affector.bot_l_y - affected.top_l_y))
+    collision_detected = true;
+    if ((affector.top_l_x - affected.top_r_x) > (affector.bot_l_y - affected.top_l_y)
+        && affected.type != affected.GEM)
     {
       affector.direction.y *= -1;
     }
@@ -102,11 +99,9 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
       && affector.top_l_y > affected.top_l_y
       && affector.top_l_y < affected.bot_l_y)
   {
-    if (affected.brick)
-    {
-      affected.visible = false;
-    }
-    if ((affector.top_r_x - affected.top_l_x) > (affector.top_l_y - affected.bot_l_y))
+    collision_detected = true;
+    if ((affector.top_r_x - affected.top_l_x) > (affector.top_l_y - affected.bot_l_y)
+        && affected.type != affected.GEM)
     {
       affector.direction.y *= -1;
     }
@@ -120,17 +115,32 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
       && affector.top_l_y > affected.top_l_y
       && affector.top_l_y < affected.bot_l_y)
   {
-    if (affected.brick)
-    {
-      affected.visible = false;
-    }
-    if ((affector.top_r_x - affected.top_r_x) > (affector.top_l_y - affected.bot_l_y))
+    collision_detected = true;
+    if ((affector.top_l_x - affected.top_r_x) > (affector.top_l_y - affected.bot_l_y)
+        && affected.type != affected.GEM)
     {
       affector.direction.y *= -1;
     }
     else
     {
       affector.direction.x *= -1;
+    }
+  }
+  if (collision_detected)
+  {
+    if (affector.type == affector.GEM)
+    {
+      score += 10;
+    }
+    if (affected.type == affected.BRICK)
+    {
+      score++;
+    }
+    if (affected.type != affected.PADDLE
+        || affector.type != affector.PADDLE)
+    {
+      affected.visible = false;
+      affector.visible = false;
     }
   }
 }

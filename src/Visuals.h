@@ -18,15 +18,18 @@ class Visuals
   */
   bool initialise(sf::RenderWindow& window, GameState& menu);
   void switchState(sf::RenderWindow& window, GameState& menu);
-  sf::Texture ball_texture, paddle_texture, brick_texture;
+  sf::Texture ball_texture, paddle_texture, brick_texture, gem_texture;
   GameObject ball, paddle;
   static const int column = 15;
   static const int row = 4;
   GameObject brick[column*row];
+  static const int gem_count = 3;
+  GameObject gem[gem_count];
   sf::Text main_text, life_text, score_text, choice_text;
   sf::Font font;
   int grid_accum = 0;
   int brick_accum = 0;
+  int gem_accum = -1;
  private:
   bool loadTexture();
 };
