@@ -128,19 +128,19 @@ void Collision::gameObjectCheck(GameObject& affector, GameObject& affected)
   }
   if (collision_detected)
   {
-    if (affector.type == affector.GEM)
-    {
-      score += 10;
-    }
-    if (affected.type == affected.BRICK)
-    {
-      score++;
-    }
     if (affected.type != affected.PADDLE
         || affector.type != affector.PADDLE)
     {
       affected.visible = false;
       affector.visible = false;
+    }
+    if (affector.type == affector.GEM)
+    {
+      score++;
+    }
+    if (affected.type == affected.BRICK)
+    {
+      score++;
     }
   }
 }

@@ -75,6 +75,7 @@ void Game::update(float dt)
     }
     visual.life_text.setString(
       "Lives Left: " + std::to_string(visual.ball.lives));
+    visual.score_text.setString("Score: " + std::to_string(collision.score));
     visual.life_text.setPosition(
       visual.paddle.getSprite()->getPosition().x,
       visual.paddle.getSprite()->getPosition().y -

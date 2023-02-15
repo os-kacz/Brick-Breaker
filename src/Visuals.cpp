@@ -64,7 +64,17 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
   choice_text.setFont(font);
   choice_text.setCharacterSize(45);
   choice_text.setFillColor(sf::Color::White);
-  choice_text.setPosition( main_text.getPosition().x,main_text.getPosition().y + main_text.getGlobalBounds().height + 20);
+  choice_text.setPosition(
+    main_text.getPosition().x,
+    main_text.getPosition().y + main_text.getGlobalBounds().height + 20);
+
+  score_text.setString("null");
+  score_text.setFont(font);
+  score_text.setCharacterSize(45);
+  score_text.setFillColor(sf::Color::White);
+  score_text.setPosition(
+              window.getSize().x / 2,
+              window.getSize().y / 2);
 
   ball.getSprite()->setScale(0.2,0.2);
   ball.getSprite()->setPosition(
@@ -115,6 +125,7 @@ void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
       window.draw(life_text);
       window.draw(*ball.getSprite());
       window.draw(*paddle.getSprite());
+      window.draw(score_text);
       for (auto & i : brick)
       {
         if (i.visible)
