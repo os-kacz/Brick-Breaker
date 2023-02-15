@@ -20,7 +20,6 @@ void Game::update(float dt)
 {
   object_speed = dt * 400;
   time_passed += dt;
-  std::cout << visual.gem_accum << std::endl << visual.gem[visual.gem_accum].visible << std::endl;
   if (time_passed > 5.0)
   {
     visual.gem_accum++;
