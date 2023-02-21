@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game(sf::RenderWindow& game_window) : window(game_window)
+Game::Game(sf::RenderWindow& game_window) : window(game_window), visual(game_window, menu)
 {
   srand(time(NULL));
 }
@@ -13,7 +13,7 @@ Game::~Game()
 
 bool Game::init()
 {
-  return visual.initialise(window, menu);
+  return visual.initialise();
 }
 
 void Game::update(float dt)
@@ -49,6 +49,7 @@ void Game::update(float dt)
           if (visual.brick_accum == (visual.column * visual.row))
           {
             menu.State = menu.WIN_MENU;
+            visual.brick_accum = 0;
           }
         }
       }
@@ -99,7 +100,7 @@ void Game::update(float dt)
 
 void Game::render()
 {
-  visual.switchState(window, menu);
+  visual.switchState();
 }
 
 void Game::keyPressed(sf::Event event)

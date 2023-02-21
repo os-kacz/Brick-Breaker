@@ -3,7 +3,7 @@
 
 // how to properly implement "sf::RenderWindow window" and "GameState menu" in this class?
 
-Visuals::Visuals()
+Visuals::Visuals(sf::RenderWindow& game_window, GameState& game_menu) : window(game_window), menu(game_menu)
 {
 
 }
@@ -41,7 +41,7 @@ bool Visuals::loadTexture()
   return true;
 }
 
-bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
+bool Visuals::initialise()
 {
   loadTexture();
 
@@ -110,7 +110,7 @@ bool Visuals::initialise(sf::RenderWindow& window, GameState& menu)
   return true;
 }
 
-void Visuals::switchState(sf::RenderWindow& window, GameState& menu)
+void Visuals::switchState()
 {
   switch (menu.State)
   {
